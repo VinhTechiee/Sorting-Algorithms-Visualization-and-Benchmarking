@@ -1,0 +1,38 @@
+# Python bytecode files
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+
+# Virtual environment folder
+venv/
+env/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# IDEs
+.vscode/
+.idea/
+
+# Operating System specific files
+.DS_Store
+Thumbs.db
+
+# GIFs and benchmark output
+*.gif
+benchmark_results.csv
+*.exe
+
+# Python test / coverage reports
+*.coverage
+*.coverage.*
+nosetests.xml
+coverage.xml
+*.cover
+*.hypothesis/
+
+# Logs and temporary files
+*.log
+*.tmp
+*.bak
