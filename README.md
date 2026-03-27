@@ -131,13 +131,13 @@ python benchmark_log_plot.py
 Note: The y-axis uses a logarithmic scale to better visualize performance differences across algorithms with significantly different time complexities.
 ### 2. Observations
 
-   - **Best performance (small scale):**:
+   - **Best performance (small scale)**:
      - Insertion Sort performs efficiently for small input sizes due to its low overhead and simple implementation.
-   - **Best scalability:**:
+   - **Best scalability**:
      - Counting Sort and Radix Sort demonstrate strong scalability and maintain low execution time as input size increases.
-   - **Moderate performance:**:
+   - **Moderate performance**:
      - Heap Sort and Merge Sort show stable growth consistent with their O(n log n) time complexity.
-   - **Poor scalability:**:
+   - **Poor scalability**:
      - Bubble Sort and Selection Sort exhibit rapid performance degradation as input size increases due to their O(n²) complexity.
 
 
