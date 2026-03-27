@@ -20,7 +20,7 @@ env/
 Thumbs.db
 
 # GIFs and benchmark output
-benchmark_results.csv
+# benchmark_results.csv
 *.exe
 
 # Python test / coverage reports
