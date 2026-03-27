@@ -4,8 +4,13 @@
 
 This project was built for academic purposes to explore, visualize, and evaluate the performance of various sorting algorithms. Through real-time animated visualizations, learners can observe how each algorithm operates step by step, and compare execution times to analyze efficiency.
 
-The main goal is to highlight the trade-off between processing speed and solution quality, providing an insightful overview of each algorithm's characteristics.
-
+The main goal is to highlight the trade-offs between execution time, memory usage, stability, and implementation complexity, providing an insightful overview of each algorithm's characteristics.
+## Features
+   - Real-time animated visualization for multiple sorting algorithms
+   - Runtime benchmarking across different input sizes
+   - CSV export of benchmark results
+   - Log-scale performance plotting for clearer comparison
+     
 ## Implemented Algorithms
 
 ### 1. **Bubble Sort**
@@ -91,25 +96,83 @@ The main goal is to highlight the trade-off between processing speed and solutio
 
 ---
 
-### Explanation:
-- **Strengths and Weaknesses**: Each algorithm has a description followed by its strengths and weaknesses, helping users choose the right algorithm depending on the scenario.
-- **Visualizations**: The animated GIFs are linked to show how each algorithm works in real-time. They are valuable for better understanding the step-by-step process behind each algorithm.
 
-This format combines a detailed comparison with visual aids to help users grasp the concept of each algorithm quickly. If you'd like to further modify or add more algorithms, feel free to let me know!
+## Algorithm Comparison Table
 
-## Algorithm Comparison
+| Algorithm        | Best Case      | Average Case    | Worst Case      | Space Complexity | Stable   | Notes |
+|-----------------|----------------|-----------------|-----------------|------------------|----------|-------|
+| Bubble Sort     | O(n)*          | O(n²)           | O(n²)           | O(1)             | Yes      | *Best case assumes optimized implementation with early stopping. |
+| Quick Sort      | O(n log n)     | O(n log n)      | O(n²)           | O(log n)**       | No       | **Average recursion stack; worst case can be O(n). |
+| Merge Sort      | O(n log n)     | O(n log n)      | O(n log n)      | O(n)             | Yes      | Consistent performance, not in-place. |
+| Heap Sort       | O(n log n)     | O(n log n)      | O(n log n)      | O(1)             | No       | In-place, but often less cache-friendly. |
+| Insertion Sort  | O(n)           | O(n²)           | O(n²)           | O(1)             | Yes      | Good for small or nearly sorted inputs. |
+| Selection Sort  | O(n²)          | O(n²)           | O(n²)           | O(1)             | No       | Simple, but usually outperformed by Insertion Sort. |
+| Radix Sort      | O(nk)          | O(nk)           | O(nk)           | O(n + k)         | Yes***   | ***Depends on using a stable subroutine such as Counting Sort. |
+| Bucket Sort     | O(n + k)       | O(n + k)        | O(n²)           | O(n + k)         | Depends  | Performance depends heavily on input distribution and bucket strategy. |
 
-| Algorithm           | Best Case Time Complexity | Worst Case Time Complexity | Space Complexity | Stability   | Characteristics |
-|---------------------|---------------------------|----------------------------|------------------|-------------|-----------------|
-| **Bubble Sort**      | O(n)                      | O(n²)                      | O(1)             | Stable      | Easy to understand, but inefficient for large data. |
-| **Quick Sort**       | O(n log n)                | O(n²)                      | O(log n)         | Unstable    | Fast for large datasets, good partitioning. |
-| **Merge Sort**       | O(n log n)                | O(n log n)                 | O(n)             | Stable      | Easy to split and merge arrays. |
-| **Heap Sort**        | O(n log n)                | O(n log n)                 | O(1)             | Unstable    | Optimizes memory but slower than Quick Sort. |
-| **Insertion Sort**   | O(n)                      | O(n²)                      | O(1)             | Stable      | Suitable for small arrays. |
-| **Selection Sort**   | O(n²)                     | O(n²)                      | O(1)             | Unstable    | Easy to implement but inefficient. |
-| **Radix Sort**       | O(nk)                     | O(nk)                      | O(n + k)         | Stable      | Suitable for integers, no comparisons needed. |
-| **Bucket Sort**      | O(n + k)                  | O(n²)                      | O(n + k)         | Stable      | Distributes data into “buckets.” |
+## Benchmark Results
+![Benchmark of Sorting Algorithms](benchmark_plot.png)
 
+*Figure: Execution time comparison of sorting algorithms across different input sizes.*
+
+To compare the runtime performance of the implemented sorting algorithms, run:
+
+```bash
+python benchmark_log_plot.py
+```
+
+### 1. Benchmark Setup
+- Input sizes: 10 → 10,000 elements
+- Data type: Random integer arrays
+- Each algorithm was tested on identical datasets
+- Execution time measured in milliseconds
+- Results averaged over multiple runs to reduce noise
+
+Note: The y-axis uses a logarithmic scale to better visualize performance differences across algorithms with significantly different time complexities.
+### 2. Observations
+
+   - **Best performance (small scale):**:
+     - Insertion Sort performs efficiently for small input sizes due to its low overhead and simple implementation.
+   - **Best scalability:**:
+     - Counting Sort and Radix Sort demonstrate strong scalability and maintain low execution time as input size increases.
+   - **Moderate performance:**:
+     - Heap Sort and Merge Sort show stable growth consistent with their O(n log n) time complexity.
+   - **Poor scalability:**:
+     - Bubble Sort and Selection Sort exhibit rapid performance degradation as input size increases due to their O(n²) complexity.
+
+
+
+### 3. Discussion
+
+The benchmark highlights that algorithm efficiency becomes increasingly important as data size grows. While simple algorithms such as Insertion Sort may perform well for small datasets, their performance degrades significantly at larger scales.
+
+Algorithms with better time complexity, such as Heap Sort, Merge Sort, Counting Sort, and Radix Sort, scale more effectively and are better suited for large datasets.
+
+An interesting observation is that Quick Sort performed worse than expected compared to other O(n log n) algorithms. This may be due to:
+
+  - Suboptimal pivot selection (e.g., first/last element)
+  - Input distribution (e.g., partially sorted data)
+  - Lack of practical optimizations (e.g., hybrid with insertion sort)
+
+These factors can significantly impact Quick Sort’s real-world performance despite its favorable average-case complexity.
+
+### 4. Conclusion
+Overall, the benchmark demonstrates that no single algorithm is optimal for all scenarios. Simpler algorithms may be suitable for small datasets, while more advanced algorithms are necessary for handling large-scale data efficiently.
+
+This benchmark also illustrates the gap between theoretical time complexity and real-world performance, where implementation details and input characteristics play a critical role.
+
+### 5. Conclusion
+To reproduce the benchmark:
+```bash
+python benchmark_log_plot.py
+```
+Install required dependencies:
+
+```bash
+pip install matplotlib numpy
+```
+
+---
 ## Technologies Used
 
 - **C++**: Implementation of sorting algorithms.
@@ -121,7 +184,7 @@ This format combines a detailed comparison with visual aids to help users grasp 
 
 1. **Clone the repository**:
 ```bash
-   git clone https://github.com/your-username/Sorting-Algorithms-Visualization-and-Benchmarking.git
+   git clone https://github.com/VinhTechiee/Sorting-Algorithms-Visualization-and-Benchmarking.git
    cd Sorting-Algorithms-Visualization-and-Benchmarking
  ```
 2. **Install required Python libraries**:
@@ -144,7 +207,7 @@ python benchmark_log_plot.py
 
 The results will be saved in results.csv and displayed in graphical form.
 
-Repository Structure
+## Repository Structure
 ```
 
 Sorting-Algorithms-Visualization-and-Benchmarking
@@ -157,7 +220,13 @@ Sorting-Algorithms-Visualization-and-Benchmarking
 │ ├── SortAlgorithms.h
 │ ├── main.cpp
 │
+├── tests/
+│ ├── catch_amalgamated.cpp
+│ ├── catch_amalgamated.hpp
+│ ├── test_sort.cpp
+│
 ├── benchmark_log_plot.py
+├── benchmark_plot.png
 ├── sorting_algorithms_visualization.py
 │
 ├── bubble_sort_visualization.gif
@@ -169,15 +238,13 @@ Sorting-Algorithms-Visualization-and-Benchmarking
 ├── radix_sort_visualization.gif
 ├── selection_sort_visualization.gif
 │
-├── results.csv
-└── benchmark_summary.csv
+└── benchmark_results.csv
  ```
 
 ### Key Findings
-Quick Sort is superior in speed for large datasets.
-Bubble Sort is easy to understand but inefficient.
-Benchmark results show the trade-off between speed and complexity of implementation.
-
+In the benchmark results, Quick Sort performed among the fastest algorithms for large random datasets.Bubble Sort is easy to understand but inefficient.
+Bubble Sort was useful for educational visualization but inefficient for large inputs.
+The results illustrate trade-offs between runtime, memory use, and algorithm design.
 
 ---
 
