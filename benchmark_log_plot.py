@@ -41,5 +41,9 @@ plt.grid(True)
 # Apply log scale for y-axis to better visualize large differences
 plt.yscale('log')
 
+# Save the plot as an image
+plt.savefig('benchmark_plot.png')  # Saves the plot to a PNG file
+
+
 # Show the plot
 plt.show()
