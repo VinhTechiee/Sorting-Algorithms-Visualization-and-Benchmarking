@@ -161,7 +161,7 @@ Overall, the benchmark demonstrates that no single algorithm is optimal for all 
 
 This benchmark also illustrates the gap between theoretical time complexity and real-world performance, where implementation details and input characteristics play a critical role.
 
-### 5. Conclusion
+### 5. Reproducibility
 To reproduce the benchmark:
 ```bash
 python benchmark_log_plot.py
